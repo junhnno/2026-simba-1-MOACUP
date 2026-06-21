@@ -12,3 +12,7 @@ function selectCard(selected, other) {
 
 cardLeft.addEventListener('click', () => selectCard(cardLeft, cardRight));
 cardRight.addEventListener('click', () => selectCard(cardRight, cardLeft));
+
+nextBtn.addEventListener('click', () => {
+    window.location.href = nextBtn.dataset.url;
+});
