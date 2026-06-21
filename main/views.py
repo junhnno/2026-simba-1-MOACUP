@@ -11,3 +11,6 @@ def cup_ing(request):
 
 def cup_result(request):
     return render(request, 'cup_result.html')
+
+def cup_link(request):
+    return render(request, 'cup_link.html')

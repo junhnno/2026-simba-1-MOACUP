@@ -1,5 +1,125 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cup_result.css' %}">
+{% endblock %}
 
 {% block content %}
-<p>cup_result</p>
+
+<div class="Frame134">
+    <div class="Frame133">
+        <div class="Frame123">
+            <p class="result_text">모아컵 결과</p>
+            <div class="Frame122">
+                <p class="your_choice">당신의 최애 아이템은</p>
+                <p class="product_name">나이키 덩크 로우</p>
+            </div>
+        </div>
+        <div class="moa_img"></div>
+    </div>
+    <div class="product_content">
+        <div class="Frame8">
+            <div class="Frame7">
+                <div class="Rectangle34">
+                </div>
+            </div>
+            <div class="Frame5">
+                <div class="Frame3">
+                    <div class="Frame1">나이키 덩크 로우</div>
+                    <div class="Frame2">₩ 139,000</div>
+                </div>
+                <img src="{% static 'images/image10.png' %}" alt="트로피" class="image10">
+            </div>
+        </div>
+    </div>
+    <div class="Frame132">
+        <a href="{% url 'cup_link' %}" class="share_btn">공유하기</a>
+        <a href="{% url 'cup_select' %}" class="retry_btn">모아컵 다시하기</a>
+    </div>
+</div>
+
+<div class="Frame135">
+    <div class="line"></div>
+    탈락한 아이템은 정리해보세요
+    <div class="line"></div>
+</div>
+
+<div class="Frame121">
+    <div class="product_content_2">
+        <div class="Frame8_2">
+            <div class="Frame7_2">
+                <div class="Rectangle34_2">
+                </div>
+            </div>
+            <div class="Frame5_2">
+                <div class="Frame3_2">
+                    <div class="Frame1_2">나이키 덩크 로우</div>
+                    <div class="Frame2_2">₩ 139,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product_content_2">
+        <div class="Frame8_2">
+            <div class="Frame7_2">
+                <div class="Rectangle34_2">
+                </div>
+            </div>
+            <div class="Frame5_2">
+                <div class="Frame3_2">
+                    <div class="Frame1_2">나이키 덩크 로우</div>
+                    <div class="Frame2_2">₩ 139,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product_content_2">
+        <div class="Frame8_2">
+            <div class="Frame7_2">
+                <div class="Rectangle34_2">
+                </div>
+            </div>
+            <div class="Frame5_2">
+                <div class="Frame3_2">
+                    <div class="Frame1_2">나이키 덩크 로우</div>
+                    <div class="Frame2_2">₩ 139,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product_content_2">
+        <div class="Frame8_2">
+            <div class="Frame7_2">
+                <div class="Rectangle34_2">
+                </div>
+            </div>
+            <div class="Frame5_2">
+                <div class="Frame3_2">
+                    <div class="Frame1_2">나이키 덩크 로우</div>
+                    <div class="Frame2_2">₩ 139,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product_content_2">
+        <div class="Frame8_2">
+            <div class="Frame7_2">
+                <div class="Rectangle34_2">
+                </div>
+            </div>
+            <div class="Frame5_2">
+                <div class="Frame3_2">
+                    <div class="Frame1_2">나이키 덩크 로우</div>
+                    <div class="Frame2_2">₩ 139,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
