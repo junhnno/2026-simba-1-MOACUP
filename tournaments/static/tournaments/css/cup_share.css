@@ -302,13 +302,14 @@ left: 50%;
 transform: translateX(-50%);
 
 display: flex;
-width: 307px;
+width: 306px;
 height: 69px;
 justify-content: center;
 align-items: center;
+gap: 10px;
 
 border-radius: 56px;
-background: var(--b_active, linear-gradient(180deg, rgba(131, 229, 244, 0.85) 0%, rgba(43, 140, 192, 0.85) 100%));
+background: linear-gradient(180deg, rgba(131, 229, 244, 0.85) 0%, rgba(43, 140, 192, 0.85) 100%);
 box-shadow: 0 3px 10px 0 rgba(255, 255, 255, 0.80), 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 
 color: #FFF;
@@ -317,4 +318,14 @@ font-family: Pretendard;
 font-size: 23px;
 font-weight: 700;
 text-decoration: none;
+}
+
+.start_btn:hover {
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%), linear-gradient(180deg, rgba(131, 229, 244, 0.85) 0%, rgba(43, 140, 192, 0.85) 100%);
+box-shadow: 0 3px 10px 0 rgba(255, 255, 255, 0.80), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.start_btn:active {
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.13) 0%, rgba(0, 0, 0, 0.13) 100%), linear-gradient(180deg, rgba(131, 229, 244, 0.85) 0%, rgba(43, 140, 192, 0.85) 100%);
+box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.60), 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }

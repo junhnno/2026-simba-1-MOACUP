@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tournaments/css/cup_start.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="Frame48">
+    <div class="Frame47">
+        <div class="Frame44">
+            <div class="Frame46">
+                <p class="head_text">보관함 속 아이템들의 대결</p>
+                <p class="title_text">모아컵</p>
+            </div>
+        </div>
+        <p class="intro_text">두 가지 선택 중<br>나의 최애를 뽑아보세요!</p>
+    </div>
+    <div class="moa_img"></div>
+</div>
+
+<a href="{% url 'tournaments:create' %}" class="start_btn">시작하기</a>
+
+{% endblock %}

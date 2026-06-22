@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/cup_link.css' %}">
+<link rel="stylesheet" href="{% static 'tournaments/css/cup_link.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -22,13 +22,12 @@
         <p class="share_text">공유 링크</p>
         <div class="Frame141">
             <p class="link_text">https://this239goldkflcllsjsll/../f.ffsdjkfljjdj . fjkdjfldjjfkdk1245</p>
-            <img src="{% static 'icons/iconamoon_copy.svg' %}" alt="복사" class="copy_icon">
+            <img src="{% static 'tournaments/icons/iconamoon_copy.svg' %}" alt="복사" class="copy_icon">
         </div>
     </div>
     <button class="copy_btn">링크 복사</button>
 </div>
 
-<a href="{% url 'cup_share_preview' %}" class="preview_btn">[ 개발 ] 공유 화면 미리보기</a>
 
-<script src="{% static 'js/cup_link.js' %}"></script>
+<script src="{% static 'tournaments/js/cup_link.js' %}"></script>
 {% endblock %}

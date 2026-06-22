@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/cup_ing.css' %}">
+<link rel="stylesheet" href="{% static 'tournaments/css/cup_ing.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
                 <div class="Frame70">
                     <div class="Frame69">
                         <div class="Frame67">
-                            <img src="{% static 'icons/solar_cup-star-bold.svg' %}" alt="trophy" width="15" height="15">
+                            <img src="{% static 'tournaments/icons/solar_cup-star-bold.svg' %}" alt="trophy" width="15" height="15">
                         </div>
                         <div class="Frame68">32강</div>
                     </div>
@@ -35,12 +35,12 @@
     </div>
 </div>
 
-<div class="image2"></div>
-<div class="image4"></div>
-<div class="image5"></div>
-<div class="image6"></div>
-<div class="image8"></div>
-<div class="image9"></div>
+<img src="{% static 'tournaments/images/image2.png' %}" alt="" class="image2">
+<img src="{% static 'tournaments/images/image4.png' %}" alt="" class="image4">
+<img src="{% static 'tournaments/images/image5.png' %}" alt="" class="image5">
+<img src="{% static 'tournaments/images/image6.png' %}" alt="" class="image6">
+<img src="{% static 'tournaments/images/image8.png' %}" alt="" class="image8">
+<img src="{% static 'tournaments/images/image9.png' %}" alt="" class="image9">
 
 <div class="Frame82">
     <div class="vs_product" id="card-left">
@@ -75,11 +75,11 @@
     <div class="vs-img"></div>
 </div>
 
-<button class="next-btn" id="next-btn" data-url="{% url 'cup_result' %}" disabled>다음</button>
+<button class="next-btn" id="next-btn" data-url="{% url 'tournaments:result' tournament.pk %}" disabled>다음</button>
 
 <div class="Frame158">
     <div class="Frame157">
-        <img src="{% static 'icons/jam_alert-f.svg' %}" alt="경고">
+        <img src="{% static 'tournaments/icons/jam_alert-f.svg' %}" alt="경고">
         <div class="Frame156">
             <div class="Frame155">
                 <p class="end_title">모아컵을 종료하시겠어요?</p>
@@ -87,11 +87,11 @@
             </div>
             <div class="Frame154">
                 <button class="modal-cancel" id="modal-cancel">취소</button>
-                <button class="modal-confirm" id="modal-confirm" data-url="{% url 'cup_select' %}">종료</button>
+                <button class="modal-confirm" id="modal-confirm" data-url="{% url 'tournaments:create' %}">종료</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="{% static 'js/cup_ing.js' %}"></script>
+<script src="{% static 'tournaments/js/cup_ing.js' %}"></script>
 {% endblock %}
