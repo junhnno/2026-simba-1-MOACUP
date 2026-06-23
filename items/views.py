@@ -48,9 +48,6 @@ def create(request):
         return redirect('items:storage')
     
     return redirect('items:plus')
-    #아이템 등록 페이지 처음 보여줄 때 사용/
-    #categories = Category.objects.filter(creator=request.user) | Category.objects.filter(is_default=True)
-    #return render(request, 'items/create.html', {'categories': categories})
 
 def detail(request, item_id):
     if not request.user.is_authenticated:
@@ -153,3 +150,16 @@ def plus(request):
     
     categories = Category.objects.filter(creator=request.user) | Category.objects.filter(is_default=True)
     return render(request, 'items/plus.html', {'categories': categories})
+
+def delete_multiple(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    if request.method == 'POST':
+        item_ids = request.POST.getlist('item_ids')
+        for item_id in item_ids:
+            item = get_object_or_404(Item, pk=item_id, owner_user=request.user)
+            item.is_deleted = True
+            item.save()
+    
+    return redirect('items:storage')

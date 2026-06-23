@@ -16,4 +16,5 @@ urlpatterns = [
     path('plus_info/', plus_info, name='plus_info'),
     path('plus/', plus, name='plus'),
     path('product/', product, name='product'),
+    path('delete_multiple/', delete_multiple, name='delete_multiple'),
 ]
