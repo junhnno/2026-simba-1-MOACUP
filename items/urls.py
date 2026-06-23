@@ -12,4 +12,5 @@ urlpatterns = [
     path('scrap/<int:item_id>/', scrap, name='scrap'),
     path('scrapped_list/', scrapped_list, name='scrapped_list'),
     path('delete/<int:item_id>/', delete, name='delete'),
+    path('delete_multiple/', delete_multiple, name='delete_multiple'),
 ]

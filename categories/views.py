@@ -1,41 +1,88 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import ProtectedError
 from .models import Category
+from items.models import Item
 
 def create(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     
     if request.method == 'POST':
-
         if Category.objects.filter(creator=request.user, name=request.POST['name']).exists():
-            return render(request, 'categories/create.html', {'error': '동일 이름의 카테고리가 존재합니다.'})
-
+            return render(request, 'categories/current.html', {'error': '동일 이름의 카테고리가 존재합니다.'})
         new_category = Category()
         new_category.creator = request.user
         new_category.name = request.POST['name']
         new_category.save()
+        return redirect('categories:current')
 
-        return redirect('items:storage')  # 수정 필요
-        
 def delete(request, category_id):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     
     delete_category = get_object_or_404(Category, pk=category_id)
 
-    # 기본 카테고리 삭제 불가
     if delete_category.is_default:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('categories:current')
 
-    # 본인 카테고리 아니면 막음
     if delete_category.creator != request.user:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('categories:current')
 
-    # 아이템 있으면 삭제 불가
     try:
         delete_category.delete()
     except ProtectedError:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('categories:current')
 
-    return redirect('items:storage')  # 수정 필요
+    return redirect('categories:current')
+
+def edit(request, category_id):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    edit_category = get_object_or_404(Category, pk=category_id)
+
+    if edit_category.creator != request.user:
+        return redirect('categories:current')
+    
+    if edit_category.is_default:
+        return redirect('categories:current')
+    
+    if request.method == 'POST':
+        new_name = request.POST.get('name')
+        if new_name:
+            if Category.objects.filter(creator=request.user, name=new_name).exists():
+                return redirect('categories:current')
+            edit_category.name = new_name
+            edit_category.save()
+        return redirect('categories:current')
+
+def current(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    nickname = request.user.profile.nickname
+    total_items_count = Item.objects.filter(owner_user=request.user, is_deleted=False).count()
+    default_categories = Category.objects.filter(is_default=True)
+    my_categories = Category.objects.filter(creator=request.user)
+    
+    categories = []
+    for category in default_categories:
+        category.item_count = Item.objects.filter(
+            owner_user=request.user, category=category, is_deleted=False).count()
+        categories.append(category)
+
+    for category in my_categories:
+        category.item_count = Item.objects.filter(
+            owner_user=request.user, category=category, is_deleted=False).count()
+        categories.append(category)
+
+    is_edit = False
+    if request.GET.get('edit') == '1':
+        is_edit = True 
+
+    return render(request, 'categories/current.html', {
+        'nickname': nickname,
+        'total_items_count': total_items_count,
+        'categories': categories,
+        'is_edit': is_edit
+    })
