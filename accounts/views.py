@@ -3,6 +3,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Profile
 
+from items.models import Item
+from tournaments.models import Tournament
 
 def login(request):
     if request.method == 'POST':
@@ -13,23 +15,24 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('accounts:login')  # 나중에 수정
+            return redirect('items:main')  # 로그인 성공 → 메인으로
         else:
-            return render(request, 'accounts/login.html')
-    
-    elif request.method == 'GET':
-        return render(request, 'accounts/login.html')
+            return render(request, 'accounts/login.html', {'error': '아이디 또는 비밀번호가 올바르지 않습니다.'})
+
+    return render(request, 'accounts/login.html')
+
 
 def logout(request):
     auth.logout(request)
     return redirect('accounts:login')
+
 
 def signup(request):
     if request.method == 'POST':
 
         if request.POST['password'] != request.POST['confirm']:
             return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
-        
+
         username = request.POST['username']
 
         if len(username) < 4 or len(username) > 15:
@@ -38,10 +41,10 @@ def signup(request):
         for char in username:
             if not ('a' <= char <= 'z' or 'A' <= char <= 'Z' or char.isdigit()):
                 return render(request, 'accounts/signup.html', {'error': '4자~15자 영문또는 숫자만 가능합니다.'})
-    
+
         if User.objects.filter(username=username).exists():
             return render(request, 'accounts/signup.html', {'error': '이미 사용중인 아이디입니다.'})
-        
+
         password = request.POST['password']
 
         if len(password) < 8:
@@ -61,7 +64,7 @@ def signup(request):
 
         if not (has_alpha and has_digit and has_special):
             return render(request, 'accounts/signup.html', {'error': '영문, 숫자, 특수문자(?,!,*등)을 조합하여 입력해주세요.'})
-        
+
         if Profile.objects.filter(nickname=request.POST['nickname']).exists():
             return render(request, 'accounts/signup.html', {'error': '이미 사용중인 닉네임입니다.'})
 
@@ -69,16 +72,33 @@ def signup(request):
             username=username,
             password=password,
         )
-        
+
         profile = new_user.profile
         profile.nickname = request.POST['nickname']
         profile.is_terms_agreed = True
         profile.save()
 
         auth.login(request, new_user)
-        return redirect('accounts:login')  # 나중에 수정
-    
+        return redirect('items:main') 
+
     return render(request, 'accounts/signup.html')
+
 
 def terms_detail(request):
     return render(request, 'accounts/terms.html')
+
+#mypage 구현 함수 
+def mypage(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login') ##이걸 주석처리 하시면 로그인 안 한 사용자도 가능해요 
+    
+    nickname = request.user.profile.nickname
+    
+    recent_results = Tournament.objects.filter(
+        user=request.user,
+        status='COMPLETED',
+        winner_item__isnull=False
+    ).select_related('winner_item').order_by('-completed_at')[:2]
+    
+    return render(request, 'accounts/mypage.html', {
+        'nickname': nickname, 'recent_results': recent_results})

@@ -107,3 +107,36 @@ def delete(request, item_id):
     delete_item.save()
     
     return redirect('items:storage')
+
+def main(request):
+    return render(request, 'items/main.html')
+
+def plus(request):
+    return render(request, 'items/plus.html')
+
+def plus_info(request):
+    return render(request, 'items/plus_info.html')
+
+def product(request):
+    return render(request, 'items/product.html')
+
+def main(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    recent_items = Item.objects.filter(
+        owner_user=request.user,
+        is_deleted=False
+    ).order_by('-created_at')[:3]
+    
+    return render(request, 'items/main.html', {
+        'recent_items': recent_items,
+        'nickname': request.user.profile.nickname,
+    })
+
+def plus(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    categories = Category.objects.filter(creator=request.user) | Category.objects.filter(is_default=True)
+    return render(request, 'items/plus.html', {'categories': categories})

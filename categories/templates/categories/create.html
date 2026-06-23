@@ -1,0 +1,57 @@
+{% extends 'items/plus_base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="frame_130">
+    <div class="what">어떤 아이템인가요?</div>
+    <div class="choose">카테고리를 하나만 선택해주세요(필수)</div>
+    <div class="blank"></div>
+    <div class="frame_127">
+        <div class="category">
+            <div class="frame_126">
+                <img src="{% static 'images/image25.png' %}" class="icon_1">
+                <div class="font_1">패션</div>
+            </div>
+        </div>
+        <div class="category">
+            <div class="frame_126">
+                <img src="{% static 'images/image26.png' %}" class="icon_1">
+                <div class="font_1">뷰티</div>
+            </div>
+        </div>
+        <div class="category">
+            <div class="frame_126">
+                <img src="{% static 'images/image27.png' %}" class="icon_1">
+                <div class="font_1">라이프</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="POST" action="{% url 'categories:create' %}">
+{% csrf_token %}
+<div class="rectangle_36">
+    <div class="rectangle_38"></div>
+    <div class="frame_153">
+        <div class="frame_142">
+            <div class="t1">카테고리 추가</div>
+            <div class="frame_141">
+                <input type="text" name="name" class="t2" placeholder="새 카테고리 이름 입력" maxlength="4" oninput="document.getElementById('count').textContent=this.value.length+'/4'" required>
+                <div class="t3" id="count">0/4</div>
+            </div>
+        </div>
+        <div class="frame_152">
+            <a href="{% url 'items:plus' %}" class="frame_150">취소</a>
+            <button type="submit" class="frame_151" style="border:none;">추가</button>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}
+
+{% block btn %}
+{% endblock %}

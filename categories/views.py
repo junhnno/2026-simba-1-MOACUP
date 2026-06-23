@@ -16,7 +16,9 @@ def create(request):
         new_category.name = request.POST['name']
         new_category.save()
 
-        return redirect('items:storage')  # 수정 필요
+        return redirect('items:plus')  # 수정 필요
+    
+    return render(request, 'categories/create.html')
         
 def delete(request, category_id):
     if not request.user.is_authenticated:
@@ -26,16 +28,16 @@ def delete(request, category_id):
 
     # 기본 카테고리 삭제 불가
     if delete_category.is_default:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('items:plus')  # 수정 필요
 
     # 본인 카테고리 아니면 막음
     if delete_category.creator != request.user:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('items:plus')  # 수정 필요
 
     # 아이템 있으면 삭제 불가
     try:
         delete_category.delete()
     except ProtectedError:
-        return redirect('items:storage')  # 수정 필요
+        return redirect('items:plus')  # 수정 필요
 
-    return redirect('items:storage')  # 수정 필요
+    return redirect('items:plus')  # 수정 필요

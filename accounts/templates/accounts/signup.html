@@ -1,0 +1,101 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+<div class="rectangle_8">
+    <p class="pretendard">회원가입</p>
+    
+    <a href="{% url 'accounts:login' %}" class="point">
+    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+    <path d="M20.625 26.125L11 16.5L20.625 6.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    </a>
+    
+    <div class="line-md"> </div>
+    <div class="frame_100">
+        <img src="{% static 'images/mocococo.png' %}" alt="모코">
+        <form action="{% url 'accounts:signup' %}" method="post">
+
+        {% csrf_token %}
+        <div class="frame_99">
+            <div class="frame_90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M11.3394 7.73358C10.9148 7.90947 10.4596 8 10 8C9.07174 8 8.1815 7.63125 7.52513 6.97487C6.86875 6.3185 6.5 5.42826 6.5 4.5C6.5 3.57174 6.86875 2.6815 7.52513 2.02513C8.1815 1.36875 9.07174 1 10 1C10.4596 1 10.9148 1.09053 11.3394 1.26642C11.764 1.44231 12.1499 1.70012 12.4749 2.02513C12.7999 2.35013 13.0577 2.73597 13.2336 3.16061C13.4095 3.58525 13.5 4.04037 13.5 4.5C13.5 4.95963 13.4095 5.41475 13.2336 5.83939C13.0577 6.26403 12.7999 6.64987 12.4749 6.97487C12.1499 7.29988 11.764 7.55769 11.3394 7.73358Z" stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 19V18.4C1 16.16 1 15.04 1.436 14.184C1.81949 13.4314 2.43139 12.8195 3.184 12.436C4.04 12 5.16 12 7.4 12H12.6C14.84 12 15.96 12 16.816 12.436C17.5686 12.8195 18.1805 13.4314 18.564 14.184C19 15.04 19 16.16 19 18.4V19H1Z" stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" name="username" class="input" placeholder="아이디를 입력해주세요">
+            </div>
+            <div class="text"> {% if error %}
+<div class="error-msg">{{ error }}</div>
+{% endif %}</div>
+            <div class="frame_90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM9 6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8H9V6ZM18 20H6V10H18V20ZM12 17C13.1 17 14 16.1 14 15C14 13.9 13.1 13 12 13C10.9 13 10 13.9 10 15C10 16.1 10.9 17 12 17Z" fill="#858585"/>
+                </svg>
+                <input type="password" name="password" class="input" placeholder="비밀번호를 입력해주세요">
+            </div>
+            <div class="text"> {% if error.password %}
+<div class="error-msg">{{ error.password }}</div>
+{% endif %}</div>
+            <div class="frame_90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
+                <path d="M1 1.27L2.28 0L19 16.72L17.73 18L14.65 14.92C13.5 15.3 12.28 15.5 11 15.5C6 15.5 1.73 12.39 0 8C0.69 6.24 1.79 4.69 3.19 3.46L1 1.27ZM11 5C11.7956 5 12.5587 5.31607 13.1213 5.87868C13.6839 6.44129 14 7.20435 14 8C14.0005 8.34057 13.943 8.67873 13.83 9L10 5.17C10.3213 5.05698 10.6594 4.99949 11 5ZM11 0.5C16 0.5 20.27 3.61 22 8C21.1834 10.0729 19.7966 11.8723 18 13.19L16.58 11.76C17.9629 10.8034 19.0783 9.5091 19.82 8C19.0117 6.34987 17.7565 4.95963 16.1974 3.98735C14.6382 3.01508 12.8375 2.49976 11 2.5C9.91 2.5 8.84 2.68 7.84 3L6.3 1.47C7.74 0.85 9.33 0.5 11 0.5ZM2.18 8C2.98835 9.65014 4.24345 11.0404 5.80264 12.0126C7.36182 12.9849 9.16251 13.5002 11 13.5C11.69 13.5 12.37 13.43 13 13.29L10.72 11C10.0242 10.9254 9.37482 10.6149 8.87997 10.12C8.38512 9.62518 8.07458 8.97584 8 8.28L4.6 4.87C3.61 5.72 2.78 6.78 2.18 8Z" fill="#858585"/>
+                </svg>
+                <input type="password" name="confirm" class="input" placeholder="비밀번호 확인">
+            </div>
+            <div class="text"> </div>
+            <div class="frame_90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 9C13.933 9 15.5 7.433 15.5 5.5C15.5 3.567 13.933 2 12 2C10.067 2 8.5 3.567 8.5 5.5C8.5 7.433 10.067 9 12 9Z" stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 20.5C2 16.0815 6.0295 12.5 11 12.5M15.5 21L20.5 16L18.5 14L13.5 19V21H15.5Z" stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" name="nickname" class="input" placeholder="닉네임을 입력해주세요">
+            </div>
+            <div class="text"> {% if error.nickname %}
+<div class="error-msg">{{ error.nickname }}</div>
+{% endif %}</div>
+    
+        </div>
+        <div class="frame_98">
+            <div class="frame_94">
+                <svg id="chk-all" class="check_1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                    <circle cx="12.5" cy="12.5" r="11.5" fill="white" stroke="#D9D9D9" stroke-width="2"/>
+                </svg>
+                <div class="box_1"> 모든 약관에 동의합니다 </div>
+                <svg id="toggle-agree" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4.16675 7.50004L10.0001 13.3334L15.8334 7.50004" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="frame_97" id="agree-detail">
+                <div class="frame_95">
+                    <svg id="chk-0" class="check" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <circle cx="12.5" cy="12.5" r="11.5" fill="white" stroke="#D9D9D9" stroke-width="2"/>
+                    </svg>
+                    <div class="box_2">이용약관 동의 (필수)</div>
+                    <a href="{% url 'accounts:terms_detail' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                        <path d="M1.00016 10.9166L5.9585 5.95829L1.00016 0.999959" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="frame_95">
+                    <svg id="chk-1" class="check" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <circle cx="12.5" cy="12.5" r="11.5" fill="white" stroke="#D9D9D9" stroke-width="2"/>
+                    </svg>
+                    <div class="box_2">개인정보 수집 및 이용 동의 (필수)</div>
+                    <a href="{% url 'accounts:terms_detail' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                        <path d="M1.00016 10.9166L5.9585 5.95829L1.00016 0.999959" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" id="signup-btn" disabled>
+            회원가입
+        </button>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/signup.js' %}"></script>
