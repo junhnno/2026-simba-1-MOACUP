@@ -341,3 +341,17 @@ def shared_play(request, token):
         "is_shared": True,
         "share_user": tournament.user,
     })
+    
+#mypage 전체보기 구현하기위한 코드 
+# 내가 완료한 모아컵 결과 전체 조회
+def tournament_record(request):
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
+
+    results = Tournament.objects.filter(
+        user=request.user,
+        status="COMPLETED",
+        winner_item__isnull=False
+    ).select_related("winner_item", "category").order_by("-completed_at")
+
+    return render(request, "cup_record.html", {"results": results})

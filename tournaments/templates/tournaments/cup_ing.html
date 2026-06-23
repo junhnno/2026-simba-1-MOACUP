@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tournaments/css/cup_ing.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="Frame81">
+    <div class="Frame80">
+        <div class="Frame79">
+            <p class="round-text">모아컵 {{ round_name }}</p>
+
+            <div class="Frame78">
+                <div class="Frame70">
+                    <div class="Frame69">
+                        <div class="Frame67">
+                            <img src="{% static 'tournaments/icons/solar_cup-star-bold.svg' %}" alt="trophy" width="15" height="15">
+                        </div>
+                        <div class="Frame68">{{ round_name }}</div>
+                    </div>
+                </div>
+
+                <div class="group1">
+                    <div class="Frame71">{{ current_match_number }}/{{ total_match_count }} 경기</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Frame72">
+            <div class="moa_img"></div>
+        </div>
+    </div>
+
+    <div class="Frame77">
+        <div class="Frame76">어떤 아이템이 더 마음에 드나요?</div>
+        <div class="Frame74">마음에 드는 아이템을 선택해주세요!</div>
+    </div>
+</div>
+
+<img src="{% static 'tournaments/images/image2.png' %}" alt="" class="image2">
+<img src="{% static 'tournaments/images/image4.png' %}" alt="" class="image4">
+<img src="{% static 'tournaments/images/image5.png' %}" alt="" class="image5">
+<img src="{% static 'tournaments/images/image6.png' %}" alt="" class="image6">
+<img src="{% static 'tournaments/images/image8.png' %}" alt="" class="image8">
+<img src="{% static 'tournaments/images/image9.png' %}" alt="" class="image9">
+
+<form method="POST" action="{% url 'tournaments:play' tournament.pk %}" id="match-form">
+    {% csrf_token %}
+    <input type="hidden" name="winner_item_id" id="winner-item-id">
+
+    <div class="Frame82">
+        <button type="button" class="vs_product" id="card-left" data-item-id="{{ left_item.id }}">
+            <div class="Frame29">
+                {% if left_item.image %}
+                    <img src="{{ left_item.image.url }}" alt="{{ left_item.name }}" class="Rectangle19">
+                {% else %}
+                    <div class="Rectangle19"></div>
+                {% endif %}
+
+                <div class="Frame28">
+                    <div class="Frame25">
+                        <div class="Frame27">{{ left_item.name }}</div>
+                    </div>
+                    <div class="Frame26">
+                        <div class="Frame27">약 {{ left_item.price }}원</div>
+                    </div>
+                </div>
+            </div>
+        </button>
+
+        <button type="button" class="vs_product" id="card-right" data-item-id="{{ right_item.id }}">
+            <div class="Frame29">
+                {% if right_item.image %}
+                    <img src="{{ right_item.image.url }}" alt="{{ right_item.name }}" class="Rectangle19">
+                {% else %}
+                    <div class="Rectangle19"></div>
+                {% endif %}
+
+                <div class="Frame28">
+                    <div class="Frame25">
+                        <div class="Frame27">{{ right_item.name }}</div>
+                    </div>
+                    <div class="Frame26">
+                        <div class="Frame27">약 {{ right_item.price }}원</div>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <div class="Frame83">
+        <div class="vs-img"></div>
+    </div>
+
+    <button type="submit" class="next-btn" id="next-btn" disabled>다음</button>
+</form>
+
+<div class="Frame158" id="end-modal">
+    <div class="Frame157">
+        <img src="{% static 'tournaments/icons/jam_alert-f.svg' %}" alt="경고">
+
+        <div class="Frame156">
+            <div class="Frame155">
+                <p class="end_title">모아컵을 종료하시겠어요?</p>
+                <p class="end_text">진행 중인 내용은 저장되지 않으며,<br>처음부터 다시 시작해야 합니다.</p>
+            </div>
+
+            <div class="Frame154">
+                <button type="button" class="modal-cancel" id="modal-cancel">취소</button>
+                <button type="button" class="modal-confirm" id="modal-confirm" data-url="{% url 'tournaments:create' %}">종료</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'tournaments/js/cup_ing.js' %}"></script>
+{% endblock %}
