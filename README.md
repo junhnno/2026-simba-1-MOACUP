@@ -137,8 +137,8 @@
 
 ## 🚀 실행 방법
 ```bash
-git clone https://github.com/LikeLion-at-DGU/2026-simba-1-PIGPOT.git
-cd 2026-simba-1-PIGPOT
+git clone https://github.com/LikeLion-at-DGU/2026-simba-1-MOCO.git
+cd 2026-simba-1-MOCO
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
