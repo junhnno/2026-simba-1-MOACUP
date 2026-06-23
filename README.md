@@ -2,18 +2,17 @@
 # 🫧 MOCO
 > **사고 싶은 물건을 모아두고, 모아컵으로 최종 선택까지 도와주는 소비 결정 서비스**
 <br>
+
 <div align="center">
 
 ![Django](https://img.shields.io/badge/Django-6.0.3-092E20?style=for-the-badge&logo=django&logoColor=white)
-  
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
 ![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-
 ![HTML5](https://img.shields.io/badge/HTML5-Frontend-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-
 ![CSS3](https://img.shields.io/badge/CSS3-Style-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
 </div>
+
 <br>
 
 ## 📅 개발 기간
@@ -24,10 +23,10 @@
 | 이름 | 역할 | GitHub |
 |---|---|---|
 | 정서현 | PM | - |
-| 이승원 | 프론트엔드 | [@feseungwon](https://github.com/feseungwon) |
-| 이현우 | 프론트엔드 | [@hyunaway](https://github.com/hyunaway) |
-| 조수아 | 백엔드 | [@choosooa](https://github.com/choosooa) |
-| 황준호 | 백엔드 | [@junhnno](https://github.com/junhnno) |
+| 이승원 | FE | [@feseungwon](https://github.com/feseungwon) |
+| 이현우 | FE | [@hyunaway](https://github.com/hyunaway) |
+| 조수아 | BE | [@choosooa](https://github.com/choosooa) |
+| 황준호 | BE | [@junhnno](https://github.com/junhnno) |
 
 
 <br>
