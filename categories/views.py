@@ -15,7 +15,7 @@ def create(request):
 
         new_category = Category()
         new_category.creator = request.user
-        new_category.name = request.POST['name']
+        new_category.name = request.POST['name']   
         new_category.save()
 
         return redirect('items:plus')
