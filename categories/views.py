@@ -57,6 +57,8 @@ def edit(request, category_id):
             edit_category.name = new_name
             edit_category.save()
         return redirect('items:plus')
+    
+    return render(request, 'categories/edit.html', {'category': edit_category})
 
 #current 함수 추가 
 def current(request):

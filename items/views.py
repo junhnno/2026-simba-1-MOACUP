@@ -116,12 +116,6 @@ def delete(request, item_id):
     
     return redirect('items:storage')
 
-def main(request):
-    return render(request, 'items/main.html')
-
-def plus(request):
-    return render(request, 'items/plus.html')
-
 def plus_info(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
@@ -136,8 +130,6 @@ def plus_info(request):
         'selected_category': selected_category  # 선택된 카테고리 따로 넘겨줌
     })
 
-def product(request):
-    return render(request, 'items/product.html')
 
 def main(request):
     if not request.user.is_authenticated:
