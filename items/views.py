@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from categories.models import Category
 from django.utils import timezone
-from django.db.models import ProtectedError
+import random
 def storage(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
@@ -142,11 +142,29 @@ def main(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     
+    categories = (
+        Category.objects.filter(is_default=True) |
+        Category.objects.filter(creator=request.user)
+    ).distinct()
+    
     items = Item.objects.filter(
         owner_user=request.user,
         is_deleted=False
     ).order_by('-created_at')
+    
+    category_id = request.GET.get('category')
+    selected_category = None
+    
+    if category_id:
+        selected_category = get_object_or_404(Category, pk=category_id)
 
+        if not selected_category.is_default and selected_category.creator != request.user:
+            return redirect('items:main')
+
+        items = items.filter(category=selected_category)
+    else:
+        items = items
+        
     recent_items = items[:3]
 
     today_count = Item.objects.filter(
@@ -154,11 +172,23 @@ def main(request):
         is_deleted=False,
         created_at__date=timezone.localdate()
     ).count()
+    
+    total_count = items.count() 
+    
+    for category in categories:
+        category.item_count = Item.objects.filter(
+            owner_user=request.user,
+            category=category,
+            is_deleted=False
+        ).count()
 
     return render(request, 'items/main.html', {
         'items': items,
         'recent_items': recent_items,
         'today_count': today_count,
+        'total_count': total_count,
+        'categories': categories,
+        'selected_category': selected_category,
         'nickname': request.user.profile.nickname,
     })
 
@@ -181,3 +211,22 @@ def delete_multiple(request):
             item.save()
     
     return redirect('items:storage')
+
+QUOTES = [
+    "마음이 가는 것과 실제로 사고 싶은 것은 다를 수도 있어 ",
+    "충동구매보다 더 좋은 건 나에게 정말 필요한 걸 찾는 거야!",
+    "무엇을 살지 고민하는 것도 똑똑한 소비의 시작이야 💡",
+    "항상 사고 싶은 걸 다 살 수는 없어! 그래서 우리는 선택을 해. 지금 가장 갖고 싶은 단 하나를 찾아보자 ✨",
+]
+
+def detail(request, item_id):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    
+    item = get_object_or_404(Item, pk=item_id)
+    quote = random.choice(QUOTES)
+    
+    if item.owner_user != request.user:
+        return redirect('items:storage')
+    
+    return render(request, 'items/detail.html', {'quote': quote, 'item': item})
