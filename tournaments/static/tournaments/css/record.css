@@ -11,6 +11,11 @@ background: transparent;
 height: 844px;
 min-height: 844px;
 overflow-y: auto;
+scrollbar-width: none;
+}
+
+.overlay::-webkit-scrollbar {
+display: none;
 }
 
 .back-btn img {

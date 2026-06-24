@@ -22,6 +22,11 @@ width: 100%;
 height: 100%;
 overflow-y: auto;
 overflow-x: hidden;
+scrollbar-width: none;
+}
+
+.mypage-scroll::-webkit-scrollbar {
+display: none;
 }
 
 .mypage-inner {

@@ -7,6 +7,11 @@ height: auto;
 min-height: 844px;
 overflow-y: auto;
 overflow-x: hidden;
+scrollbar-width: none;
+}
+
+.screen::-webkit-scrollbar {
+display: none;
 }
 
 .overlay {

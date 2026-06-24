@@ -46,9 +46,14 @@ margin-top: 45px;
     flex:1;
 
     overflow-y:auto;
+    scrollbar-width: none;
 
     margin-top:20px;
     padding-bottom:20px;
+}
+
+.terms_box::-webkit-scrollbar {
+    display: none;
 }
 
 .text{
