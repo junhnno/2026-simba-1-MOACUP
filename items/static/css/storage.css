@@ -1,55 +1,261 @@
-.rectangle_9{
-    width: 390px;
+/* ── 공통 구조 (record와 동일) ── */
+.screen {
+position: relative;
+width: 390px;
 height: 844px;
+overflow: hidden;
 background: var(--back, linear-gradient(180deg, #FFF 0%, #FFF3CF 100%));
-display:flex;
-flex-direction:column;
-align-items:center;
 }
 
-.product_content{
-    display: flex;
+.overlay {
+background: transparent;
+height: 844px;
+min-height: 844px;
+overflow-y: auto;
+scrollbar-width: none;
+}
+
+.overlay::-webkit-scrollbar {
+display: none;
+}
+
+.back-btn img {
+position: absolute;
+top: 70px;
+left: 32px;
+
+width: 33px;
+height: 33px;
+aspect-ratio: 1/1;
+}
+
+.storage_list {
+position: absolute;
+top: 45px;
+left: 50%;
+transform: translateX(-50%);
+
+display: flex;
+width: 123px;
+height: 22px;
+flex-direction: column;
+justify-content: center;
+
+color: #000;
+text-align: center;
+font-family: Pretendard;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 30px;
+}
+
+.Frame180 {
+position: absolute;
+top: 130px;
+left: 50%;
+transform: translateX(-50%);
+
+display: flex;
+width: 347px;
+padding: 0 10px 30px;
+flex-direction: column;
+align-items: flex-start;
+gap: 0;
+
+max-height: 714px;
+overflow-y: auto;
+scrollbar-width: none;
+}
+
+.Frame180::-webkit-scrollbar {
+display: none;
+}
+
+.Frame115 {
+display: flex;
+align-items: center;
+align-self: stretch;
+margin-bottom: 15px;
+}
+
+.Frame115 p {
+display: flex;
+width: 82px;
+flex-direction: column;
+justify-content: center;
+align-self: stretch;
+
+color: #000;
+text-align: center;
+font-family: Pretendard;
+font-size: 26px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.Frame117 {
+display: flex;
+width: 42px;
+height: 30px;
+padding: 3px 15px 3px 14px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+
+border-radius: 20px;
+background: #CEF4EC;
+
+color: #43A4DB;
+text-align: center;
+font-family: Pretendard;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.Frame182 {
+display: flex;
+height: 24px;
+justify-content: flex-end;
+align-items: center;
+flex: 1 0 0;
+}
+
+.Frame183 {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+align-self: stretch;
+
+color: #6C95AC;
+text-align: center;
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+cursor: pointer;
+}
+
+.Frame121 {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+flex: 1 0 0;
+align-self: stretch;
+}
+
+/* ── 카테고리 필터 ── */
+.category-row {
+display: flex;
+align-items: flex-start;
+align-content: flex-start;
+gap: 10px;
+align-self: stretch;
+flex-wrap: wrap;
+margin-bottom: 28px;
+}
+
+.category-btn {
+display: flex;
+height: 39px;
+padding: 0 16px;
+justify-content: center;
+align-items: center;
+
+border-radius: 20px;
+border: 1px solid #D3D3D3;
+background: var(--main_ca_non, #FFF);
+
+color: #676767;
+text-align: center;
+font-family: Pretendard;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+white-space: nowrap;
+
+text-decoration: none;
+}
+
+.category-btn.active {
+border-color: #43A4DB;
+background: #43A4DB;
+color: #FFF;
+font-weight: 700;
+
+border-radius: 20px;
+border: 1px solid #D3D3D3;
+background: var(--main_ca_ac, #92BDD5);
+}
+
+/* ── 탈락 아이템 카드 (cup_result + flex-shrink: 0) ── */
+.product_content_2 {
+display: flex;
 height: 95px;
 padding: 13px 16px;
 flex-direction: column;
 justify-content: center;
 align-items: flex-start;
 gap: 10px;
-flex-shrink: 0;
-align-self: stretch;
+flex: 1 0 0;
+
 border-radius: 20px;
 background: #FFF;
 box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-.frame_8{
-    display: flex;
+.Frame8_2 {
+display: flex;
 align-items: center;
 gap: 20px;
 flex: 1 0 0;
 align-self: stretch;
 }
 
-.frame_7{
-    display: flex;
+.Frame7_2 {
+display: flex;
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
 }
 
-.frame_5{
-    display: flex;
+.Rectangle34_2 {
+width: 75px;
+height: 70px;
+border-radius: 20px;
+border: 1px solid #D3D3D3;
+object-fit: cover;
+}
+
+.Frame5_2 {
+display: flex;
 justify-content: center;
 align-items: center;
 gap: 68px;
 }
 
-.frame_1{
-    display: flex;
-justify-content: center;
+.Frame3_2 {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 6px;
+}
+
+.Frame1_2 {
+display: flex;
+justify-content: flex-start;
 align-items: center;
 gap: 10px;
 align-self: stretch;
+
 color: #000;
 font-family: Pretendard;
 font-size: 18px;
@@ -58,15 +264,140 @@ font-weight: 700;
 line-height: normal;
 }
 
-.frame_2{
-    display: flex;
-justify-content: center;
+.Frame2_2 {
+display: flex;
+justify-content: flex-start;
 align-items: center;
 gap: 10px;
+
 color: #676767;
 font-family: Pretendard;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+white-space: nowrap;
+}
+
+.card-row {
+display: flex;
+flex-direction: row;
+align-items: center;
+align-self: stretch;
+flex-shrink: 0;
+}
+
+.record-checkbox {
+appearance: none;
+-webkit-appearance: none;
+display: none;
+width: 25px;
+height: 25px;
+padding: 5px;
+border-radius: 12.5px;
+border: 0.61px solid #D9D9D9;
+background: #fff;
+flex-shrink: 0;
+cursor: pointer;
+transition: border-color 0.15s;
+}
+
+.record-checkbox:checked {
+background: #43A4DB;
+border-color: #43A4DB;
+background-image: url("../tournaments/icons/mingcute_check-fill.svg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 12px;
+}
+
+.edit-mode .record-checkbox {
+display: block;
+}
+
+.edit-mode {
+gap: 0;
+}
+
+.edit-mode .Frame115 {
+margin-bottom: 15px;
+}
+
+.edit-mode .category-row {
+margin-bottom: 15px;
+}
+
+.edit-mode .select-all-row {
+margin-bottom: 20px;
+}
+
+.edit-mode .card-row {
+justify-content: center;
+align-items: center;
+gap: 34px;
+}
+
+.edit-mode .product_content_2 {
+flex: 0 0 268px;
+}
+
+.select-all-row {
+display: none;
+align-items: center;
+justify-content: flex-end;
+align-self: stretch;
+}
+
+.record-checkbox-all {
+appearance: none;
+-webkit-appearance: none;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+border: 2px solid #D3D3D3;
+background: #fff;
+cursor: pointer;
+}
+
+.record-checkbox-all:checked {
+background: #43A4DB;
+border-color: #43A4DB;
+background-image: url("../tournaments/icons/mingcute_check-fill.svg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 10px;
+}
+
+.select-all-row label {
+display: flex;
+width: 78px;
+height: 24px;
+flex-direction: column;
+justify-content: center;
+
+color: #676767;
+text-align: right;
+font-family: Pretendard;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+cursor: pointer;
+}
+
+.Frame183.delete-mode {
+color: #F36262;
+text-align: right;
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.record-empty {
+color: #676767;
+font-family: Pretendard;
+font-size: 14px;
+text-align: center;
 }

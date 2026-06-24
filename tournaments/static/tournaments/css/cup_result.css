@@ -4,6 +4,11 @@ height: auto;
 min-height: 844px;
 overflow-y: auto;
 overflow-x: hidden;
+scrollbar-width: none;
+}
+
+.screen::-webkit-scrollbar {
+display: none;
 }
 
 .overlay {
@@ -288,7 +293,7 @@ line-height: normal;
 
 .Frame1_2 {
 display: flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 gap: 10px;
 align-self: stretch;
@@ -333,7 +338,7 @@ line-height: normal;
 
 .Frame2_2 {
 display: flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 gap: 10px;
 

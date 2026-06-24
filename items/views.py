@@ -21,10 +21,12 @@ def search(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     
-    keyword = request.GET.get('q') # 프론트 확인 후 수정 필요
+    categories = Category.objects.filter(creator=request.user) | Category.objects.filter(is_default=True)
+
+    keyword = request.GET.get('q', '')
     items = Item.objects.filter(owner_user=request.user, product_name__icontains=keyword, is_deleted=False)
                                                         # 장고 ORM icontains 사용
-    return render(request, 'items/storage.html', {'items': items})
+    return render(request, 'items/storage.html', {'items': items, 'categories': categories })
 
 def create(request):
     if not request.user.is_authenticated:
@@ -39,7 +41,7 @@ def create(request):
     
         new_item = Item()
         new_item.owner_user = request.user
-        new_item.category = get_object_or_404(Category, pk=request.POST['category'])
+        new_item.category = get_object_or_404(Category, pk=category_id) 
         new_item.product_name = request.POST['product_name']
         new_item.image = request.FILES.get('image')
         new_item.product_url = request.POST.get('product_url')
@@ -80,6 +82,7 @@ def edit(request, item_id):
         return redirect('items:detail', edit_item.id)
     
     categories = Category.objects.filter(creator=request.user) | Category.objects.filter(is_default=True)
+
     return render(request, 'items/edit.html', {'item': edit_item, 'categories': categories})
 
 def scrap(request, item_id):
@@ -112,8 +115,11 @@ def delete(request, item_id):
     if delete_item.owner_user != request.user:
         return redirect('items:detail', delete_item.id)
     
-    delete_item.is_deleted = True
-    delete_item.save()
+    try:
+        delete_item.delete() 
+    except ProtectedError:
+        delete_item.is_deleted = True
+        delete_item.save()
     
     return redirect('items:storage')
 
@@ -128,7 +134,7 @@ def plus_info(request):
     
     return render(request, 'items/plus_info.html', {
         'categories': categories,
-        'selected_category': selected_category  # 선택된 카테고리 따로 넘겨줌
+        'selected_category': selected_category 
     })
 
 

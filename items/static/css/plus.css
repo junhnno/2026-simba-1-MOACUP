@@ -51,11 +51,16 @@ align-self: stretch;
 
     height: 260px;
     overflow-y: auto;
+    scrollbar-width: none;
 
     padding-left: 5px; 
     padding-top: 10px; 
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
     box-sizing: border-box;
+}
+
+.frame_127::-webkit-scrollbar {
+    display: none;
 }
 
 .category{

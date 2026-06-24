@@ -1,24 +1,70 @@
-{% load static %}
+{% extends 'base.html' %}
+{% load static humanize %}
+
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/storage.css' %}">
+{% endblock %}
 
-<div class="rectangle_9">
+{% block content %}
 
-    {% for item in items %}
-    <div class="product_content">
-        <div class="frame_8">
-            <div class="frame_7">
-            
-            </div>
-            <div class="frame_5">
-                <div class="frame_1">
-                {{ item.product_name }}
+<a href="{% url 'accounts:mypage' %}" class="back-btn">
+    <img src="{% static 'tournaments/icons/chevron-left-gray.svg' %}" alt="뒤로가기">
+</a>
+
+<div class="storage_list">보관함 리스트</div>
+
+<form id="delete-form" method="POST" action="{% url 'items:delete_multiple' %}">
+    {% csrf_token %}
+
+    <div class="Frame180" id="Frame180">
+        <div class="Frame115">
+            <p>보관함</p>
+            <div class="Frame117">{{ items.count }}</div>
+            <div class="Frame182"></div>
+            <div class="Frame183" id="edit-btn">편집</div>
+        </div>
+
+        <div class="category-row">
+            <a href="{% url 'items:storage' %}" class="category-btn {% if not request.GET.category %}active{% endif %}">전체</a>
+            {% for category in categories %}
+            <a href="?category={{ category.pk }}" class="category-btn {% if request.GET.category == category.pk|stringformat:'s' %}active{% endif %}">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="select-all-row" id="select-all-row">
+            <input type="checkbox" id="select-all" class="record-checkbox-all">
+            <label for="select-all">전체 선택</label>
+        </div>
+
+        <div class="Frame121">
+            {% for item in items %}
+            <div class="card-row">
+                <input type="checkbox" name="item_ids" value="{{ item.pk }}" class="record-checkbox">
+                <div class="product_content_2">
+                    <div class="Frame8_2">
+                        <div class="Frame7_2">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.product_name }}" class="Rectangle34_2">
+                            {% else %}
+                                <div class="Rectangle34_2"></div>
+                            {% endif %}
+                        </div>
+                        <div class="Frame5_2">
+                            <div class="Frame3_2">
+                                <div class="Frame1_2">{{ item.product_name }}</div>
+                                <div class="Frame2_2">₩ {{ item.price|intcomma }}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="frame_2">
-                {{ item.price }}
-                </div>
             </div>
+            {% empty %}
+            <p class="record-empty">아직 보관함이 비어있어요.</p>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
+</form>
 
-</div>
+<script src="{% static 'js/storage.js' %}" defer></script>
+
+{% endblock %}

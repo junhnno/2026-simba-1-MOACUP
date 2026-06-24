@@ -80,9 +80,14 @@
         flex-direction: column;
         gap: 6px;
         margin-top: 45px; 
-        overflow-y: auto; 
-        padding-bottom: 20px; 
+        overflow-y: auto;
+        scrollbar-width: none;
+        padding-bottom: 20px;
         }
+
+.frame_173::-webkit-scrollbar {
+    display: none;
+}
 
 .frame_170{
     display: flex;

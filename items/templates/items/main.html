@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static humanize %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="frame_10">
                                 {% if item.price %}
-                                    ₩ {{ item.price|floatformat:0 }}
+                                ₩ {{ item.price|floatformat:0|intcomma }}
                                 {% else %}
                                     가격 미등록
                                 {% endif %}
